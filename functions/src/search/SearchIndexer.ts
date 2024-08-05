@@ -4,11 +4,11 @@ import hash from "object-hash"
 import Collection from "typesense/lib/Typesense/Collection"
 import { ImportResponse } from "typesense/lib/Typesense/Documents"
 import { ImportError, ObjectNotFound } from "typesense/lib/Typesense/Errors"
-import { db, DocumentSnapshot, QuerySnapshot } from "../firebase"
+import { db } from "../firebase"
 import { createClient } from "./client"
 import { CollectionConfig } from "./config"
 import { z } from "zod"
-import { Timestamp } from "../firebase"
+import { Timestamp, DocumentSnapshot, QuerySnapshot } from "firebase-admin/firestore"
 
 export const BackfillConfig = z.object({
   numBatches: z.number().positive().optional()

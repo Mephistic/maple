@@ -22,7 +22,7 @@ import { firestore, functions } from "../../components/firebase"
 import { expectPermissionDenied, genUserInfo } from "./common"
 import { FirebaseError } from "@firebase/util"
 import { Testimony } from "functions/src/testimony/types"
-import { Timestamp } from "functions/src/firebase"
+import { Timestamp } from "firebase-admin/firestore"
 import { Report } from "components/moderation/types"
 import { fakeUser } from "components/moderation/setUp/MockRecords"
 

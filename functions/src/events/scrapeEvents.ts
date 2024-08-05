@@ -1,7 +1,8 @@
 import { runWith } from "firebase-functions"
 import { DateTime } from "luxon"
 import { logFetchError } from "../common"
-import { db, Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
+import { db } from "../firebase"
 import * as api from "../malegislature"
 import {
   BaseEvent,

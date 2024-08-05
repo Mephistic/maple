@@ -29,14 +29,12 @@ const init: (args: unknown) => Context = args => {
       runAgainstEmulators()
       break
   }
-  const firebase = require("../../functions/src/firebase")
+  const { auth, db } = require("../../functions/src/firebase")
   const api = require("../../functions/src/malegislature")
   return {
     env,
-    firebase,
-    auth: firebase.auth,
-    db: firebase.db,
-    admin: firebase.admin,
+    auth,
+    db,
     api
   }
 }

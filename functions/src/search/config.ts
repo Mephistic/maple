@@ -1,6 +1,6 @@
 import { Query } from "@google-cloud/firestore"
 import { CollectionCreateSchema } from "typesense/lib/Typesense/Collections"
-import { DocumentData } from "../firebase"
+import { DocumentData } from "firebase-admin/firestore"
 
 export type BaseRecord = { id: string }
 export type Schema = Omit<CollectionCreateSchema, "name">

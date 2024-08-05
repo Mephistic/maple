@@ -1,4 +1,4 @@
-import { Timestamp } from "functions/src/firebase"
+import { Timestamp } from "firebase-admin/firestore"
 import { Script } from "./types"
 
 export const script: Script = async ({ db }) => {

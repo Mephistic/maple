@@ -31,7 +31,7 @@ services:
       dockerfile: infra/Dockerfile.firebase
     environment:
       - FUNCTIONS_DISCOVERY_TIMEOUT=120
-    command: yarn emulators:start --debug
+    command: yarn emulators:start --debug --inspect-functions
     working_dir: /app
     depends_on:
       init:

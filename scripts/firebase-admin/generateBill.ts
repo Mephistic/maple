@@ -1,5 +1,4 @@
-// import { Timestamp } from "firebase/firestore"
-import { Timestamp } from "../../functions/src/firebase"
+import { Timestamp } from "firebase-admin/firestore"
 import { Record, String, Number } from "runtypes"
 import { Script } from "./types"
 import { Bill, BillContent } from "../../functions/src/bills/types"

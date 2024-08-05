@@ -1,6 +1,6 @@
 import { Array, InstanceOf, Number, Record, Static, String } from "runtypes"
 import { Id, NullStr } from "../common"
-import { Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 export type MemberReference = Static<typeof MemberReference>
 export const MemberReference = Record({ MemberCode: String })

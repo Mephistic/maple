@@ -4,7 +4,7 @@ import * as admin from "firebase-admin"
 import * as handlebars from "handlebars"
 import * as helpers from "../email/helpers"
 import * as fs from "fs"
-import { Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 // Get a reference to the Firestore database
 const db = admin.firestore()

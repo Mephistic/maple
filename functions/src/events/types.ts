@@ -11,7 +11,7 @@ import {
   Union
 } from "runtypes"
 import { Id } from "../common"
-import { Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 const Nullable = <T extends Runtype>(r: T) => r.Or(Null)
 

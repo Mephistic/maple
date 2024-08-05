@@ -1,6 +1,6 @@
 const functions = require("firebase-functions")
 import * as admin from "firebase-admin"
-import { Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 export const updateUserNotificationFrequency = functions.firestore
   .document("profiles/{userId}")

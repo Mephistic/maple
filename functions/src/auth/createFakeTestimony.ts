@@ -2,7 +2,7 @@ import * as functions from "firebase-functions"
 import { checkAdmin, checkAuth } from "../common"
 import { auth, db } from "../firebase"
 import { Testimony } from "../testimony/types"
-import { Timestamp } from "../firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 // for populating admin module for testing & demonstration--alert--no auth checked here.
 //@TODO: remove

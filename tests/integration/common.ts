@@ -15,7 +15,7 @@ import { nanoid } from "nanoid"
 import { auth } from "../../components/firebase"
 import { Bill, BillContent } from "../../functions/src/bills/types"
 import { testAuth, testDb, testTimestamp } from "../testUtils"
-import { Timestamp } from "functions/src/firebase"
+import { Timestamp } from "firebase-admin/firestore"
 import { Timestamp as FirestoreTimestamp } from "@google-cloud/firestore"
 
 export async function signInUser(email: string) {

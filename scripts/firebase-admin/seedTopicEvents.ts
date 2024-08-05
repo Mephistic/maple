@@ -1,6 +1,6 @@
 import { Script } from "./types"
 import * as admin from "firebase-admin"
-import { Timestamp } from "functions/src/firebase"
+import { Timestamp } from "firebase-admin/firestore"
 
 /** Seed Firestore with topic events */
 export const script: Script = async ({ db }) => {

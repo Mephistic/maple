@@ -1,4 +1,4 @@
-import { FieldValue, Timestamp } from "../../functions/src/firebase"
+import { FieldValue, Timestamp } from "firebase-admin/firestore"
 import { Record, String, Number } from "runtypes"
 import { Script } from "./types"
 

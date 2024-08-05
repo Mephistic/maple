@@ -10,7 +10,8 @@ import {
   Maybe,
   checkAdmin
 } from "../common"
-import { db, FieldValue } from "../firebase"
+import { FieldValue } from "firebase-admin/firestore"
+import { db } from "../firebase"
 import { Attachments } from "./attachments"
 import { DraftTestimony, Testimony } from "./types"
 import { updateTestimonyCounts } from "./updateTestimonyCounts"
