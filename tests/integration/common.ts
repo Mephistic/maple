@@ -14,7 +14,7 @@ import { Testimony } from "functions/src/testimony/types"
 import { nanoid } from "nanoid"
 import { auth } from "../../components/firebase"
 import { Bill, BillContent } from "../../functions/src/bills/types"
-import { testAuth, testDb, testTimestamp } from "../testUtils"
+import { testAuth, testDb } from "../testUtils"
 import { Timestamp } from "firebase-admin/firestore"
 import { Timestamp as FirestoreTimestamp } from "@google-cloud/firestore"
 
@@ -175,7 +175,7 @@ export const createNewTestimony = async (uid: string, billId: string) => {
     billTitle: "An act",
     version: 2,
     billId,
-    publishedAt: testTimestamp.now(),
+    publishedAt: Timestamp.now(),
     court: 192,
     position: "oppose",
     content: "testimony content"
@@ -248,7 +248,7 @@ export const createNewReport = async (uid: string, tid: string) => {
     authorUid: uid,
     testimonyId: tid,
     testimonyVersion: "2",
-    reportDate: testTimestamp.now(),
+    reportDate: Timestamp.now(),
     reason: "reason",
     additionalInformation: "additional info"
   }

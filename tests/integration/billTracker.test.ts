@@ -4,8 +4,9 @@ import { billTrackerPath } from "functions/src/analysis"
 import { predictBillStatus } from "functions/src/analysis/predictBillStatus"
 import { BillTracker, Stage } from "functions/src/analysis/types"
 import { nanoid } from "nanoid"
-import { testDb, testTimestamp } from "tests/testUtils"
+import { testDb } from "tests/testUtils"
 import { createNewBill } from "./common"
+import { Timestamp } from "firebase-admin/firestore"
 
 // yarn firebase-admin -e local run-script touchBills --court 192 --bills='H1011 H1225 H1035 H2147 H100'
 
@@ -355,7 +356,7 @@ describe.skip("billTracker", () => {
         court: court,
         label: {
           attribution: "alex",
-          createdAt: testTimestamp.now(),
+          createdAt: Timestamp.now(),
           status: Stage.signed
         }
       } as BillTracker)

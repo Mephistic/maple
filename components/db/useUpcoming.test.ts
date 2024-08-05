@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react"
-import { terminateFirebase, testDb, testTimestamp } from "../../tests/testUtils"
+import { terminateFirebase, testDb } from "../../tests/testUtils"
 import { useUpcomingBills } from "./useUpcomingBills"
 
 import { DateTime } from "luxon"
@@ -7,6 +7,7 @@ import { currentGeneralCourt } from "functions/src/shared"
 import { midnight } from "./common"
 import { useUpcomingEvents } from "./events"
 import { createFakeBill } from "tests/integration/common"
+import { Timestamp } from "firebase-admin/firestore"
 
 const mockedMidnight = jest.mocked(midnight)
 
@@ -22,7 +23,7 @@ describe("useUpcomingBills", () => {
     await testDb
       .doc(`/generalCourts/${currentGeneralCourt}/bills/${billId}`)
       .update({
-        nextHearingAt: testTimestamp.now()
+        nextHearingAt: Timestamp.now()
       })
 
     const { result } = renderHook(() => useUpcomingBills())
