@@ -52,6 +52,7 @@ export type Bill = {
   history: BillHistory
   currentCommittee?: CurrentCommittee
   city?: string
+  summary?: string
 }
 
 export function useBill(court: number, id: string) {

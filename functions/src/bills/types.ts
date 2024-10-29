@@ -72,7 +72,8 @@ export const Bill = withDefaults(
     history: BillHistory,
     similar: Array(Id),
     currentCommittee: Optional(CurrentCommittee),
-    city: Optional(String)
+    city: Optional(String),
+    summary: Optional(String)
   }),
   {
     court: 0,

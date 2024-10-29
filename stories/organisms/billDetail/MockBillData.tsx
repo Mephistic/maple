@@ -75,5 +75,6 @@ export const bill: Bill = {
       email: "a@b.com"
     }
   },
-  city: "Boston"
+  city: "Boston",
+  summary: "This is the summary"
 }
