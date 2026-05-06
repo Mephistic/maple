@@ -13,7 +13,9 @@ const scrapers: {
   startCityBatches: "startCityBatches",
   startCommitteeBatches: "startCommitteeBatches",
   startMemberBatches: "startMemberBatches",
-  scrapeHearings: "scrapeHearings",
+  // TODO: scrapeHearings has some AssemblyAI calls that we don't want to run locally
+  // until the Mock API is working
+  //scrapeHearings: "scrapeHearings",
   scrapeSessions: "scrapeSessions",
   scrapeSpecialEvents: "scrapeSpecialEvents",
   updateCommitteeRosters: "updateCommitteeRosters",
