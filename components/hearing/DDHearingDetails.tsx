@@ -5,27 +5,23 @@ import { Carousel, Col, Container, Row } from "../bootstrap"
 import { Back } from "../shared/CommonComponents"
 import { Internal } from "../links"
 import { HearingSidebar } from "./HearingSidebar"
-import {
-  DDHearing,
-  DDUtterance,
-  speakerName
-} from "./digitalDemocracyApi"
+import { DDHearing, DDUtterance, speakerName } from "./digitalDemocracyApi"
 
 // Hardcoded for hearing 279802 for testing; production needs a real hid -> committee/general court lookup
 const COMMITTEE_CODE = "SJ42"
 const GENERAL_COURT_NUMBER = "194"
 
 const ddApiPersonIdToMemberId: Record<number, string> = {
-    211022: "PRF0", // Paul Feeney
-    211000: "MSD1", // Michael Day
-    211028: "RCF0", // Ryan Fattman
-    210993: "K_H1", // Kate Hogan
-    210961: "DTV1", // David Vieira
-    210945: "CFF0", // Cindy Friedman
-    210928: "BRF0", // Barry Finegold
-    210931: "BPC0", // Brendan Crighton
-    210924: "AHP1", // Alice Peisch
-    210964: "FAM1", // Frank Moran
+  211022: "PRF0", // Paul Feeney
+  211000: "MSD1", // Michael Day
+  211028: "RCF0", // Ryan Fattman
+  210993: "K_H1", // Kate Hogan
+  210961: "DTV1", // David Vieira
+  210945: "CFF0", // Cindy Friedman
+  210928: "BRF0", // Barry Finegold
+  210931: "BPC0", // Brendan Crighton
+  210924: "AHP1", // Alice Peisch
+  210964: "FAM1" // Frank Moran
 }
 
 const VideoWrapper = styled.div`
