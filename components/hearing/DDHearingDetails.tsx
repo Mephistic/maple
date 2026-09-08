@@ -4,11 +4,16 @@ import styled from "styled-components"
 import { Carousel, Col, Container, Row } from "../bootstrap"
 import { Back } from "../shared/CommonComponents"
 import { Internal } from "../links"
+import { HearingSidebar } from "./HearingSidebar"
 import {
   DDHearing,
   DDUtterance,
   speakerName
 } from "./digitalDemocracyApi"
+
+// Hardcoded for hearing 279802 for testing; production needs a real hid -> committee/general court lookup
+const COMMITTEE_CODE = "SJ42"
+const GENERAL_COURT_NUMBER = "194"
 
 const ddApiPersonIdToMemberId: Record<number, string> = {
     211022: "PRF0", // Paul Feeney
@@ -47,6 +52,8 @@ const VideoChild = styled.video`
 
 const TranscriptContainer = styled(Container)`
   background-color: var(--maple-surface-base);
+  max-height: 500px;
+  overflow-y: auto;
 `
 
 const TranscriptRow = styled(Row)`
@@ -94,56 +101,73 @@ export const DDHearingDetails = ({ hearing }: { hearing: DDHearing }) => {
 
       <h1>{hearing.title}</h1>
 
-      {videos.length > 0 ? (
-        <Carousel
-          className="mt-3"
-          interval={null}
-          indicators={videos.length > 1}
-          controls={videos.length > 1}
-        >
-          {videos.map(video => (
-            <Carousel.Item key={video.uid}>
-              <VideoWrapper>
-                <VideoParent>
-                  <VideoChild src={video.video_url} controls muted />
-                </VideoParent>
-              </VideoWrapper>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      ) : null}
+      <Row>
+        <Col className="col-md-8 mt-4">
+          {videos.length > 0 ? (
+            <Carousel
+              className="mt-3"
+              interval={null}
+              indicators={videos.length > 1}
+              controls={videos.length > 1}
+            >
+              {videos.map(video => (
+                <Carousel.Item key={video.uid}>
+                  <VideoWrapper>
+                    <VideoParent>
+                      <VideoChild src={video.video_url} controls muted />
+                    </VideoParent>
+                  </VideoWrapper>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : null}
 
-      <TranscriptContainer className="mt-4 rounded">
-        {utterances === null ? (
-          <div className="py-2 px-2">
-            {t("transcript_loading", { ns: "hearing" })}
-          </div>
-        ) : (
-          utterances.map(utterance => {
-            const name =
-              speakerName(utterance) ?? t("unknown_speaker", { ns: "hearing" })
-            const memberId =
-              utterance.person_type === "legislator" && utterance.pid !== null
-                ? ddApiPersonIdToMemberId[utterance.pid]
-                : undefined
+          <TranscriptContainer className="mt-4 rounded">
+            {utterances === null ? (
+              <div className="py-2 px-2">
+                {t("transcript_loading", { ns: "hearing" })}
+              </div>
+            ) : (
+              utterances.map(utterance => {
+                const name =
+                  speakerName(utterance) ??
+                  t("unknown_speaker", { ns: "hearing" })
+                const memberId =
+                  utterance.person_type === "legislator" &&
+                  utterance.pid !== null
+                    ? ddApiPersonIdToMemberId[utterance.pid]
+                    : undefined
 
-            return (
-              <TranscriptRow className="py-2 px-2" key={utterance.uid}>
-                <Speaker>
-                  {memberId ? (
-                    <Internal href={`/legislators/194/${memberId}`}>
-                      {name}
-                    </Internal>
-                  ) : (
-                    name
-                  )}
-                </Speaker>
-                <div>{utterance.content}</div>
-              </TranscriptRow>
-            )
-          })
-        )}
-      </TranscriptContainer>
+                return (
+                  <TranscriptRow className="py-2 px-2" key={utterance.uid}>
+                    <Speaker>
+                      {memberId ? (
+                        <Internal href={`/legislators/194/${memberId}`}>
+                          {name}
+                        </Internal>
+                      ) : (
+                        name
+                      )}
+                    </Speaker>
+                    <div>{utterance.content}</div>
+                  </TranscriptRow>
+                )
+              })
+            )}
+          </TranscriptContainer>
+        </Col>
+
+        <div className="col-md-4">
+          <HearingSidebar
+            activeVideo={0}
+            billsInAgenda={null}
+            committeeCode={COMMITTEE_CODE}
+            generalCourtNumber={GENERAL_COURT_NUMBER}
+            hearingDate={hearing.date}
+            transcripts={null}
+          />
+        </div>
+      </Row>
     </Container>
   )
 }
