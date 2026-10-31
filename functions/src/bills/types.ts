@@ -66,7 +66,9 @@ export const BillTopic = Record({
 export const MISSING_TIMESTAMP = Timestamp.fromMillis(0)
 
 /**
- * If you update this you also need to update `llm/bill_on_document_created.py`
+ * The topics the bill tagger may assign. The tagger prompt in
+ * `functions/src/bills/llm` is built from this list, so changes here apply to it
+ * automatically.
  */
 export const TOPICS_BY_CATEGORY = {
   Commerce: [

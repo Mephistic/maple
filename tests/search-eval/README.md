@@ -45,7 +45,7 @@ exactly what the app's search pipeline would.
 
 **bills** is built in two steps. The documents come from the committed emulator
 fixture; the LLM `summary` field is joined in from a live project afterwards,
-because the fixture was captured before the trigger in `llm/` existed and has a
+because the fixture was captured before the `generateBillSummaryAndTags` trigger existed and has a
 summary for exactly 0 of its 7,337 bills:
 
 ```bash

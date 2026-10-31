@@ -32,7 +32,7 @@ MAPLE (the Massachusetts Platform for Legislative Engagement) is a Code for Bost
 | Database, auth, storage   | Firebase (Firestore, Auth, Storage)                               | `firestore.rules`, `firestore.indexes.json`, `storage.rules`                                         |
 | Backend jobs and triggers | Firebase Cloud Functions (TypeScript)                             | `functions/src/`                                                                                     |
 | Search                    | Typesense                                                         | `components/search/`, `docs/search-deployment.md`                                                    |
-| Python services           | LLM features, data scrapers                                       | `llm/`, `lobbying-scraper/`                                                                          |
+| Python services           | Data scrapers                                                     | `lobbying-scraper/`                                                                                  |
 | Cloud infrastructure      | Google Cloud, Terraform                                           | `infra/`                                                                                             |
 | Tests                     | Jest (unit/integration), Playwright (end-to-end)                  | `functions/`, `tests/integration/`, `tests/e2e/`, `*.test.ts` next to the code                       |
 | Design notes and plans    | Markdown                                                          | `docs/` (feature write-ups and an ADR), plus the [wiki](https://github.com/codeforboston/maple/wiki) |
@@ -105,7 +105,7 @@ Run these on a fresh branch from `upstream/main`, before making changes, so you 
 | `yarn test`             | All Cloud Functions test suites pass.                                                                                                                                  |
 | `yarn test:website`     | All website test suites pass.                                                                                                                                          |
 | `yarn dev`              | `curl -I http://localhost:3000` returns `200`. The first request compiles the page and can take 20 seconds or more.                                                    |
-| Python (only if needed) | `pip install -r llm/requirements.txt` (or `lobbying-scraper/requirements.txt`) first, then the Python checks [below](#checks-that-run-on-every-pr).                    |
+| Python (only if needed) | `pip install -r lobbying-scraper/requirements.txt` first, then the Python checks [below](#checks-that-run-on-every-pr).                                                |
 
 If something fails on an untouched branch, it is not caused by your change. Note it in the PR rather than fixing it as part of unrelated work.
 
@@ -171,15 +171,15 @@ your branch ──PR──▶ main ──(automatic)──▶ dev site + dev bac
 
 [Repo Checks](.github/workflows/repo-checks.yml) runs on every push and PR. Run the same commands before you push:
 
-| Check                                      | Command                                                                                                    |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| Lint                                       | `yarn lint`                                                                                                |
-| Formatting (all files, including Markdown) | `yarn check-formatting`; fix with `yarn fix`                                                               |
-| Types                                      | `yarn check-types`                                                                                         |
-| Cloud Functions tests                      | `yarn test`                                                                                                |
-| Website tests                              | `yarn test:website`                                                                                        |
-| Integration tests                          | `yarn test:integration-ci <files>` (needs Java for the emulators)                                          |
-| Python in `llm/`                           | `ruff check llm/`, `ruff format --check llm/`, `pytest llm/` (after `pip install -r llm/requirements.txt`) |
+| Check                                      | Command                                                                                    |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Lint                                       | `yarn lint`                                                                                |
+| Formatting (all files, including Markdown) | `yarn check-formatting`; fix with `yarn fix`                                               |
+| Types                                      | `yarn check-types`                                                                         |
+| Cloud Functions tests                      | `yarn test`                                                                                |
+| Website tests                              | `yarn test:website`                                                                        |
+| Integration tests                          | `yarn test:integration-ci <files>` (needs Java for the emulators)                          |
+| Python in `lobbying-scraper/`              | `pytest lobbying-scraper/tests` (after `pip install -r lobbying-scraper/requirements.txt`) |
 
 CI runs only the website tests named in the `test:website` script and the integration test files listed in [repo-checks.yml](.github/workflows/repo-checks.yml). Add a new test to one of those lists, or it can fail on `main` unnoticed.
 

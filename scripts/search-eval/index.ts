@@ -381,7 +381,7 @@ async function buildRemoteCorpus(args: Args) {
  * the corpus's own source predates.
  *
  * The bills corpus is the committed emulator fixture, captured before the LLM
- * `summary` trigger in llm/ existed — all 7,337 documents have no summary, and
+ * `summary` trigger existed — all 7,337 documents have no summary, and
  * prod has one for 97.9% of them. Re-exporting bills from prod instead would
  * bring four years of unrelated drift with it: court 192 closed in 2022, so
  * prod's copy has drained out of its policy committees (36 distinct
