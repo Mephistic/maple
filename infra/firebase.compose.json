@@ -10,15 +10,6 @@
       "source": "functions",
       "codebase": "maple",
       "runtime": "nodejs22"
-    },
-    {
-      "predeploy": [
-        "python3.11 -m venv llm/venv",
-        ". llm/venv/bin/activate && python3.11 -m pip install -r llm/requirements.txt --require-virtualenv"
-      ],
-      "source": "llm",
-      "codebase": "maple-llm",
-      "runtime": "python311"
     }
   ],
   "firestore": {

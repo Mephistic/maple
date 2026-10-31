@@ -12,12 +12,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-      - run: pip install -r llm/requirements.txt
-      - run: ruff check llm/
-      - run: ruff format --check llm/
-      - run: pytest llm/
       - run: pip install -r lobbying-scraper/requirements.txt
-      # A separate run: both suites have a `tests` package.
       - run: pytest lobbying-scraper/tests
 
   check_code_quality:

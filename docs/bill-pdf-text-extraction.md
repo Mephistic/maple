@@ -48,16 +48,17 @@ missing `content.DocumentText`. Bills that already have text are skipped.
 
 ## Summary And Topic Backfill
 
-Updating existing bill documents does not trigger the Python LLM function,
-because that function currently runs on document creation only. After committing
+Updating existing bill documents does not trigger the LLM function
+(`generateBillSummaryAndTags`), because that function runs on document creation
+only. After committing
 PDF text, run the LLM backfill for the repaired bills:
 
 ```sh
-python llm/backfill_summaries_runner.py --court 194 --bill-ids "H1 H4787 H5008 S2539" --output ./summaries-and-topics.csv
+OPENAI_API_KEY=<key> yarn firebase-admin run-script backfillBillSummaries --env dev --court 194 --bill-ids "H1 H4787 H5008 S2539" --output ./summaries-and-topics.csv
 ```
 
 Use `--dry-run` to verify which rows would be processed without updating
 Firestore.
 
-`backfill_summaries.py` is the legacy immediate-run wrapper.
-`backfill_summaries_runner.py` is the import-safe CLI and test target.
+The script is `scripts/firebase-admin/backfillBillSummaries.ts`; its logic and
+tests are in `scripts/firebase-admin/backfillSummaries.ts`.

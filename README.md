@@ -68,6 +68,8 @@ git pull upstream main
 - `yarn dev:down`: Stop the application.
 - `yarn dev:update`: Update the application images. Run this whenever dependencies in `package.json` change.
 
+The bill summary and tagging function (`generateBillSummaryAndTags`) needs an OpenAI key. To run it in the emulators, put `OPENAI_API_KEY=<your key>` in `functions/.secret.local`. Without it, the function fails when a bill is created; nothing else is affected. Deployed environments read the `OPENAI_API_KEY` secret from Google Cloud Secret Manager (`firebase functions:secrets:set OPENAI_API_KEY --project <project>`).
+
 ### Storybook Firebase Guard
 
 Storybook blocks real Firebase Auth and Firestore calls by default to prevent accidental network access from stories.

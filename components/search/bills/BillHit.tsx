@@ -154,7 +154,7 @@ const matched = (hit: Hit<BillRecord>, attribute: "summary" | "pinslip") => {
  * summary wins where both matched: it says what the bill does in plain
  * language, where the pinslip is the clerk's procedural note. The fallback is
  * not a rare path — roughly one bill in four on the current court has no
- * summary yet, because the trigger in llm/ needs DocumentText the scrape has
+ * summary yet, because the `generateBillSummaryAndTags` trigger needs DocumentText the scrape has
  * not always captured (#8), and procedural orders are excluded by the converter
  * on purpose.
  */
